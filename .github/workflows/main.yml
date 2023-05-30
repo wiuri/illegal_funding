@@ -1,0 +1,17 @@
+name: sync_from_gitee
+on:
+  pull_request:
+    branches:
+      - main
+      - new
+jobs:
+  repo_sync:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Mirror the Gitee repos to Github.
+      uses: Yikun/hub-mirror-action@v1.2
+      with:
+        src: gitee/illegal_funding
+        dst: github/illegal_funding
+        dst_key: ${{ secrets.PRIVATE_KEY_GITHUB }}
+        dst_token: ${{ secrets.TOKEN_GITHUB }}
